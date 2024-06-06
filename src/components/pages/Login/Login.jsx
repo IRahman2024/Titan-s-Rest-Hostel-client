@@ -1,15 +1,39 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
-import { ToastContainer } from "react-toastify";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
+import { ToastContainer, toast } from "react-toastify";
+import SocialLogin from "./SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
+    const {signIn} = useAuth()
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
     const captchaRef = useRef()
+    const handleLogin = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const pass = form.password.value;
+        signIn(email, pass)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast('login successful!')
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                toast.error('something went wrong. Please Try again!');
+                console.log(err.message);
 
+            })
+    }
     const handleValidateCaptcha = () => {
         const value = captchaRef.current.value;
         if (validateCaptcha(value) == true) {
@@ -31,14 +55,13 @@ const Login = () => {
                 <title>Titan's Rest | LogIn</title>
             </Helmet>
             <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center md:w-1/2 lg:text-left">
+                <div className="hero-content flex-col">
+                    <div className="text-center">
                         <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div className="card shrink-0 md:w-1/2 max-w-xs shadow-2xl bg-base-100">
+                    <div className="card shrink-0 shadow-2xl bg-base-100">
                         <form
-                            // onSubmit={handleLogin}
+                            onSubmit={handleLogin}
                             className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -57,9 +80,9 @@ const Login = () => {
                             </div>
                             {/* captcha */}
                             <div className="form-control">
-                                {/* <label className="label">
+                                <label className="label">
                                     <LoadCanvasTemplate />
-                                </label> */}
+                                </label>
                                 <input
                                     onBlur={handleValidateCaptcha}
                                     type="text" placeholder="type the captcha" ref={captchaRef} className="input input-bordered" required />

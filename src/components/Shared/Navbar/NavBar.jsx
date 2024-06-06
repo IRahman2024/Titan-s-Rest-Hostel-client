@@ -1,13 +1,28 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { ToastContainer, toast } from "react-toastify";
 
 const NavBar = () => {
+
+    const { user, logOut } = useAuth();
 
     const navlinks = <>
         <li className="mx-2"><Link to='/'>Home</Link></li>
         <li className="mx-2"><Link to='/'>Meals</Link></li>
         <li className="mx-2"><Link to='/'>Upcoming Meals</Link></li>
         <li className="mx-2"><Link to='/'>Notifications</Link></li>
+        <li className="mx-2"><Link to='/'>Dashboard</Link></li>
     </>
+    console.log(user);
+    const handleLogOut = () => {
+        // console.log('dgdgddgf');
+        return logOut()
+            .then((result) => {
+                console.log(result);
+                toast('Logout Successful!');
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className="navbar bg-base-100">
@@ -32,10 +47,31 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='/login'>
-                    <a className="btn btn-primary">LogIn</a>
-                </Link>
+                {
+                    user ?
+                        <>
+                            <div role="button" className="btn btn-ghost btn-circle avatar"
+                            title={user?.displayName}
+                            >
+                                <div className="mr-2 w-36 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleLogOut}
+                                className="btn btn-outline btn-error">LogOut
+                            </button>
+                        </>
+                        :
+                        <Link to='/login'>
+                            <a className="btn btn-outline btn-success">Login</a>
+                        </Link>
+                }
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+            />
         </div>
     );
 };

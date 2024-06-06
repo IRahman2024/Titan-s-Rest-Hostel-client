@@ -8,6 +8,7 @@ const Banner = () => {
         <div className="">
             <Carousel
                 useKeyboardArrows={true}
+                showThumbs={false}
             >
                 <div className="flex items-center justify-center img1 py-32 md:py-36 lg:py-64">
                     <div>

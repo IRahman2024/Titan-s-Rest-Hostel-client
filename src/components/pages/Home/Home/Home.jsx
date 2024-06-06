@@ -3,7 +3,7 @@ import Banner from "../banner/Banner";
 const Home = () => {
     return (
         <div>
-            <div className="max-h-44">
+            <div className="mb-4">
                 <Banner></Banner>
             </div>
         </div>
