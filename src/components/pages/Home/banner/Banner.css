@@ -1,0 +1,20 @@
+.img1{
+    background: url('../../../../../public/banner/img-1.jpg');
+    background-size: cover;
+    background-position: top;
+}
+.img2{
+    background: url('../../../../../public/banner/img-2.jpg');
+    background-size: cover;
+    background-position: top;
+}
+.img3{
+    background: url('../../../../../public/banner/img-3.jpg');
+    background-size: cover;
+    background-position: top;
+}
+.img4{
+    background: url('../../../../../public/banner/img-4.jpg');
+    background-size: cover;
+    background-position: top;
+}
