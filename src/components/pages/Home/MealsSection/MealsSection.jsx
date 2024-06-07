@@ -9,8 +9,12 @@ const MealsSection = () => {
 
     const initialIndex = 0;
     const [tabIndex, setTabIndex] = useState(initialIndex);
-    const [meals] = useMeals();
-    console.log(tabIndex);
+    const [meals, loader] = useMeals();
+    // console.log(meals);
+
+    if(loader){
+        return <span className="loading loading-spinner loading-lg"></span>
+    }
 
     const breakfast = meals?.filter(meal => meal.category === 'breakfast');
     const lunch = meals?.filter(meal => meal.category === 'lunch');

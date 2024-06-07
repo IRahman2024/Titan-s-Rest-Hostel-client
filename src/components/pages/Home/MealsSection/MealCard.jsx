@@ -1,6 +1,8 @@
-const MealCard = ({meal}) => {
+import { Link } from "react-router-dom";
+
+const MealCard = ({ meal }) => {
     //todo: rating missing
-    const { name, category, price, details, ingredients, distributorEmail, distributorName, image } = meal;
+    const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id } = meal;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img
@@ -11,9 +13,12 @@ const MealCard = ({meal}) => {
                 <h2 className="card-title">{name}</h2>
                 <p>${price}</p>
                 <div className="card-actions justify-end">
-                    <button
-                        // onClick={() => handleAddToCart(item)}
-                        className="btn border-0 border-b-4 border-yellow-100">Details</button>
+                    <Link to={`meals/${_id}`}>
+                        <button
+                            // onClick={() => handleAddToCart(item)}
+                            className="btn border-0 border-b-4 border-yellow-100">Details
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
