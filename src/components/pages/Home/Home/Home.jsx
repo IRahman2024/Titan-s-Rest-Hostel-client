@@ -1,4 +1,5 @@
 import MemberShip from "../../MemberShip/MemberShip";
+import MealsSection from "../MealsSection/MealsSection";
 import Banner from "../banner/Banner";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
 
                 <MemberShip></MemberShip>
             </div>
+            <MealsSection></MealsSection>
         </div>
     );
 };

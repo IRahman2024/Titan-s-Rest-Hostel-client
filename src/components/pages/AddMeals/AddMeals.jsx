@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const image_host = import.meta.env.VITE_imagebb_api_key;
@@ -36,29 +37,32 @@ const AddMeals = () => {
                 price: parseFloat(data.price),
                 details: data.details,
                 ingredients: data.ingredients,
-                adminEmail: data.adminEmail,
-                adminName : data.adminName ,
+                distributorEmail: data.distributorEmail,
+                distributorName : data.distributorName ,
                 image: res.data.data.display_url
             }
             console.log(mealItems);
-            // const menuRes = await axiosSecure.post('/menu', menuItem);
-            // console.log(menuRes.data);
-            // if (menuRes.data.insertedId) {
-            //     Swal.fire({
-            //         position: "center",
-            //         icon: "success",
-            //         title: `${data.name} was added`,
-            //         showConfirmButton: false,
-            //         timer: 1500
-            //     });
-            // }
+            const mealRes = await axiosPublic.post('/meals', mealItems);
+            console.log(mealRes.data);
+            if (mealRes.data.insertedId) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `${data.name} was added`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         }
         // const imageUrl= res.data.data.display_url
         // console.log(imageUrl);
     }
 
     return (
-        <div className="mx-72">
+        <div className="mx-72 my-8">
+            <Helmet>
+                <title>Titan's Rest | Add Meal</title>
+            </Helmet>
             <div>
                 <div className='mx-10'>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +74,7 @@ const AddMeals = () => {
                             </div>
                             <input
                                 {...register("name", { required: true })}
-                                type="text" placeholder="Type Dish name" className="input input-bordered w-full" />
+                                type="text" placeholder="Type Dish name" className="input input-bordered input-info w-full" />
                         </label>
 
 
@@ -96,11 +100,11 @@ const AddMeals = () => {
                             <div className=' w-1/2'>
                                 <label className="form-control">
                                     <div className="label">
-                                        <span className="label-text">Price</span>
+                                        <span className="label-text">Price$</span>
                                     </div>
                                     <input
                                         {...register("price", { required: true })}
-                                        type="text" placeholder="Type Dish name" className="input input-bordered w-full" />
+                                        type="text" placeholder="Type Price" className="input input-bordered input-info w-full" />
                                 </label>
                             </div>
                         </div>
@@ -113,19 +117,19 @@ const AddMeals = () => {
                                         <span className="label-text">Admin/Distributor Name</span>
                                     </div>
                                     <input
-                                        {...register("adminName", { required: true })}
-                                        type="text" placeholder="Enter Admin or Distributor name" className="input input-bordered w-full" />
+                                        {...register("distributorName", { required: true })}
+                                        type="text" placeholder="Enter Admin or Distributor name" className="input input-bordered input-info w-full" />
                                 </label>
                             </div>
                             {/* distributor email */}
                             <div className=' w-1/2'>
                                 <label className="form-control">
                                     <div className="label">
-                                        <span className="label-text">Distributor Name</span>
+                                        <span className="label-text">Distributor/Admin Email</span>
                                     </div>
                                     <input
                                         {...register("distributorEmail", { required: true })}
-                                        type="email" placeholder="Type Admin or distributor Email" className="input input-bordered w-full" />
+                                        type="email" placeholder="Type Admin or distributor Email" className="input input-bordered input-info w-full" />
                                 </label>
                             </div>
                         </div>
