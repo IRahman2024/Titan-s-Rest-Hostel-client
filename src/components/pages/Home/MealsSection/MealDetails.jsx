@@ -12,7 +12,7 @@ const MealDetails = () => {
     const { id } = useParams();
 
     const { data: meal, isPending: loader, refetch } = useQuery({
-        queryKey: ['meals'],
+        queryKey: ['singleMeal'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/meals/${id}`);
             return res.data;

@@ -10,7 +10,7 @@ const MealsSection = () => {
     const initialIndex = 0;
     const [tabIndex, setTabIndex] = useState(initialIndex);
     const [meals, loader] = useMeals();
-    // console.log(meals);
+    console.log(meals);
 
     if(loader){
         return <span className="loading loading-spinner loading-lg"></span>
