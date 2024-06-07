@@ -4,10 +4,10 @@ const MealCard = ({meal}) => {
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img
-                className="rounded-t-2xl w-full"
+                className="w-full h-64"
                 src={image} alt="Shoes" /></figure>
             <p className="bg-black rounded-xl p-2 text-white absolute  right-2 top-3">$ {price}</p>
-            <div className="card-body bg-yellow-100">
+            <div className="card-body bg-green-800 rounded-b-2xl">
                 <h2 className="card-title">{name}</h2>
                 <p>${price}</p>
                 <div className="card-actions justify-end">

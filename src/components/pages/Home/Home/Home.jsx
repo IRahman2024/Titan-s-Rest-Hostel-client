@@ -5,14 +5,15 @@ import Banner from "../banner/Banner";
 const Home = () => {
     return (
         <div>
-            <div className="my-4">
+            <div className="my-5">
                 <Banner></Banner>
             </div>
-            <div className='mb-10 flex justify-center'>
-
-                <MemberShip></MemberShip>
+            <div className='my-10 mx-20 gap-x-10'>
+                <div className="flex justify-center">
+                    <MemberShip></MemberShip>
+                </div>
+                <MealsSection></MealsSection>
             </div>
-            <MealsSection></MealsSection>
         </div>
     );
 };

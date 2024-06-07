@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import useMeals from "../../../hooks/useMeals";
-import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import 'react-tabs/style/react-tabs.css';
 import MealTab from "./MealTab";
 
 const MealsSection = () => {
 
-    const categories = ['breakfast', 'lunch', 'dinner'];
-    // const { category } = useParams();
-    // console.log(category);
-    // const initialIndex = categories.indexOf(category);
-    // console.log(initialIndex);
-    const [tabIndex, setTabIndex] = useState(1);
+    const initialIndex = 0;
+    const [tabIndex, setTabIndex] = useState(initialIndex);
     const [meals] = useMeals();
+    console.log(tabIndex);
 
     const breakfast = meals?.filter(meal => meal.category === 'breakfast');
     const lunch = meals?.filter(meal => meal.category === 'lunch');
