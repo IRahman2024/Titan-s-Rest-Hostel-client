@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../../hooks/useAxiosScure";
 
 const UserProfile = () => {
 
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const [addAbout, setAbout] = useState(false);
 
     const { data: userProfile, isPending: loader, refetch } = useQuery({
         queryKey: ['oneUser', user?.email],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/users/${user?.email}`);
+            const res = await axiosSecure.get(`/users/${user?.email}`);
             return res.data;
         }
     })
@@ -29,7 +28,7 @@ const UserProfile = () => {
         e.preventDefault();
         const bio = document.getElementById('bio-textarea').value;
         console.log(bio);
-        const res = await axiosPublic.put(`/users/${user.email}`, {bio: bio});
+        const res = await axiosSecure.put(`/users/${user.email}`, {bio: bio});
         console.log(res);
         refetch();
     }
@@ -50,7 +49,7 @@ const UserProfile = () => {
                     className="w-44"
                     src={image} alt="Movie" /></figure>
                 <div className="card-body">
-                    <h2 className="card-title text-green-400">Badge: {badge}</h2>
+                    <h2 className="card-title text-green-400 uppercase">Badge: {badge}</h2>
                     <p>Name: {name}</p>
                     <p>Email: {email}</p>
                     <p>Email: {email}</p>

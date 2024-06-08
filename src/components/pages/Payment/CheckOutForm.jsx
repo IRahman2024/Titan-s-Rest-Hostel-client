@@ -1,10 +1,9 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-// import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-// import useCarts from "../../../../hooks/useCarts";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosScure";
 
 const CheckOutForm = () => {
     const stripe = useStripe();
@@ -15,26 +14,32 @@ const CheckOutForm = () => {
     const [clientSecret, setClientSecret] = useState();
 
     const packageName = useParams();
-    const price = parseInt(packageName.price);
-    // setPrice(packageName.price);
-    // console.log(packageName.price);
-    
-    console.log(price);
+    console.log(user);
+    const packageSelected = {
+        gold: 200,
+        silver: 500,
+        platinum: 700 
+    }
+    const price = parseInt(packageSelected[packageName.package])
+    // const price = parseInt(packageName.price);
 
-    // const axiosSecure = useAxiosSecure();
-    // const price = cart.reduce((total, item) => total + item.price, 0);
+    // console.log(packageSelected);
+    
+    // console.log(price);
+
+    const axiosSecure = useAxiosSecure();
 
     // console.log(user);
 
-    // useEffect(() => {
-    //     if (price > 0) {
-    //         axiosSecure.post('/create-payment-intent', { price })
-    //             .then(res => {
-    //                 // console.log(res.data.clientSecret);
-    //                 setClientSecret(res.data.clientSecret)
-    //             })
-    //     }
-    // }, [axiosSecure, price])
+    useEffect(() => {
+        if (price > 0) {
+            axiosSecure.post('/create-payment-intent', { price })
+                .then(res => {
+                    // console.log(res.data.clientSecret);
+                    setClientSecret(res.data.clientSecret)
+                })
+        }
+    }, [axiosSecure, price])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,31 +82,31 @@ const CheckOutForm = () => {
         }
         else {
             console.log('payment intent: ', paymentIntent);
-            // if (paymentIntent.status === 'succeeded') {
-            //     setTransactionID(paymentIntent.id)
-            //     //now save the payment in the database
-            //     const payment = {
-            //         email: user?.email,
-            //         price: price,
-            //         transactionID: paymentIntent.id,
-            //         date: new Date(), //utc date convert use moment js
-            //         cartIds: cart.map(item => item._id),
-            //         menuIds: cart.map(item => item.menuId),
-            //         status: 'pending'
-            //     }
-            //     const res = await axiosSecure.post('/payments', payment);
-            //     console.log('payment saved', res.data);
-            //     refetch();
-            //     if (res.data?.paymentResult?.insertedId) {
-            //         Swal.fire({
-            //             title: "Transaction Successful",
-            //             text: `Thank You for buying from us.
-            //             Transaction id: ${paymentIntent.id}`,
-            //             icon: "success"
-            //         });
-            //     }
+            if (paymentIntent.status === 'succeeded') {
+                setTransactionID(paymentIntent.id)
+                //now save the payment in the database
+                const payment = {
+                    email: user?.email,
+                    price: price,
+                    transactionID: paymentIntent.id,
+                    date: new Date(), //utc date convert use moment js
+                }
+                const res = await axiosSecure.post('/payments', payment);
+                console.log('payment saved', res.data);
+                // refetch();
+                if (res.data?.paymentResult?.insertedId) {
+                    //changing package name for profile
+                    const res = axiosSecure.put(`/users/${user.email}`, packageName)
+                    console.log(res);
+                    Swal.fire({
+                        title: "Transaction Successful",
+                        text: `Thank You for buying from us.
+                        Transaction id: ${paymentIntent.id}`,
+                        icon: "success"
+                    });
+                }
 
-            // }
+            }
         }
 
     }

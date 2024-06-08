@@ -99,7 +99,7 @@ const MemberShip = () => {
                     </ul>
                 </div>
                 <div className="button-container">
-                    <Link to={`/dashboard/checkOut/200`}>
+                    <Link to={`/dashboard/checkOut/gold`}>
                         <button className='btn btn-outline btn-success' type="btn">
                             Upgrade Now
                         </button>
@@ -188,7 +188,7 @@ const MemberShip = () => {
                     </ul>
                 </div>
                 <div className="button-container">
-                    <Link to={`/dashboard/checkOut/500`}>
+                    <Link to={`/dashboard/checkOut/silver`}>
                         <button className='btn btn-outline btn-success' type="btn">
                             Upgrade Now
                         </button>
@@ -286,7 +286,7 @@ const MemberShip = () => {
                     </ul>
                 </div>
                 <div className="button-container">
-                    <Link to={`/dashboard/checkOut/700`}>
+                    <Link to={`/dashboard/checkOut/platinum`}>
                         <button className='btn btn-outline btn-success' type="btn">
                             Upgrade Now
                         </button>

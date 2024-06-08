@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
                 element: <UserProfile></UserProfile>
             },
             {
-                path:'checkout/:price',
+                path:'checkout/:package',
                 element: <Payment></Payment>
             },
         ]
