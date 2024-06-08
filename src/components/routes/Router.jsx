@@ -8,6 +8,7 @@ import Meals from "../pages/Meals/Meals";
 import DashBoard from "../pages/DashBoard/DashBoard";
 import UserProfile from "../pages/DashBoard/User/UserProfile/UserProfile";
 import SignUp from "../pages/SignUp/SignUp";
+import Payment from "../pages/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
             {
                 path:'/dashBoard/userProfile',
                 element: <UserProfile></UserProfile>
-            }
+            },
+            {
+                path:'checkout/:price',
+                element: <Payment></Payment>
+            },
         ]
 
     }

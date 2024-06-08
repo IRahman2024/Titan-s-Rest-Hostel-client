@@ -2,6 +2,7 @@
 // import gold from '../../../../public/badge/gold.png'
 // import platinum from '../../../../public/badge/platinum.png'
 
+import { Link } from 'react-router-dom';
 import './memberCard.css'
 
 const MemberShip = () => {
@@ -98,9 +99,11 @@ const MemberShip = () => {
                     </ul>
                 </div>
                 <div className="button-container">
-                    <button className='btn btn-outline btn-success' type="btn">
-                        Upgrade Now
-                    </button>
+                    <Link to={`/dashboard/checkOut/200`}>
+                        <button className='btn btn-outline btn-success' type="btn">
+                            Upgrade Now
+                        </button>
+                    </Link>
                 </div>
             </div>
 
@@ -185,9 +188,11 @@ const MemberShip = () => {
                     </ul>
                 </div>
                 <div className="button-container">
-                    <button className='btn btn-outline btn-success' type="btn">
-                        Upgrade Now
-                    </button>
+                    <Link to={`/dashboard/checkOut/500`}>
+                        <button className='btn btn-outline btn-success' type="btn">
+                            Upgrade Now
+                        </button>
+                    </Link>
                 </div>
             </div>
 
@@ -281,9 +286,11 @@ const MemberShip = () => {
                     </ul>
                 </div>
                 <div className="button-container">
-                    <button className='btn btn-outline btn-success' type="btn">
-                        Upgrade Now
-                    </button>
+                    <Link to={`/dashboard/checkOut/700`}>
+                        <button className='btn btn-outline btn-success' type="btn">
+                            Upgrade Now
+                        </button>
+                    </Link>
                 </div>
             </div>
 

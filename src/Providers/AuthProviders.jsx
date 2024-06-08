@@ -51,21 +51,21 @@ const AuthProviders = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             //todo:
-            // if (currentUser) {
-            //     const userInfo = { email: currentUser.email }
-            //     axiosPublic.post('/jwt', userInfo)
-            //         .then(res => {
-            //             if (res.data.token) {
-            //                 localStorage.setItem('access-token', res.data.token);
-            //                 // console.log(res.data.token);
-            //                 setLoader(false);
-            //             }
-            //         })
-            // }
-            // else {
-            //     localStorage.removeItem('access-token');
-            //     setLoader(false);
-            // }
+            if (currentUser) {
+                const userInfo = { email: currentUser.email }
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token);
+                            // console.log(res.data.token);
+                            setLoader(false);
+                        }
+                    })
+            }
+            else {
+                localStorage.removeItem('access-token');
+                setLoader(false);
+            }
         });
         return () => {
             return unsubscribe();

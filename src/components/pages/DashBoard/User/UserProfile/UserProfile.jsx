@@ -22,15 +22,17 @@ const UserProfile = () => {
         return <p>Please wait</p>
     }
 
-    const { name, email, image, badge } = userProfile;
-    // console.log(userProfile);
+    const { name, email, image, badge, about } = userProfile;
+    console.log(about?.bio);
 
-    // const handleUpdate = async(e) => {
-    //     e.preventDefault();
-    //     const bio = document.getElementById('bio-textarea').value;
-    //     console.log(bio);
-    //     const res = await axiosPublic.put(`/users/${user.email}`, {bio: bio});
-    // }
+    const handleUpdate = async(e) => {
+        e.preventDefault();
+        const bio = document.getElementById('bio-textarea').value;
+        console.log(bio);
+        const res = await axiosPublic.put(`/users/${user.email}`, {bio: bio});
+        console.log(res);
+        refetch();
+    }
 
 
 
@@ -57,7 +59,7 @@ const UserProfile = () => {
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">About me!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <p>{about?.bio}</p>
                     <div className="card-actions justify-center">
                         <button
                             onClick={() => setAbout(true)}
@@ -65,14 +67,14 @@ const UserProfile = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="grid justify-items-end gap-2">
+            <div className="grid justify-items-end gap-2">
                 <textarea
                     id="bio-textarea"
                     className="textarea textarea-primary" placeholder="Bio"></textarea>
                 <button
                     onClick={handleUpdate}
                     className="btn btn-square px-10">Add</button>
-            </div> */}
+            </div>
         </div>
     );
 };

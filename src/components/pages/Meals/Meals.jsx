@@ -4,13 +4,14 @@ import MealCard from "../Home/MealsSection/MealCard";
 import './searchbar.css';
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosScure";
 
 const Meals = () => {
     // const [meals, refetch] = useMeals();
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState('');
     const [range, setRange] = useState(0);
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
 
     const handleSearch = e => {
@@ -23,7 +24,7 @@ const Meals = () => {
     const { data: meals, isPending: loader } = useQuery({
         queryKey: ['allFoods', url],
         queryFn: async () => {
-            const response = await axiosPublic.get(url)
+            const response = await axiosSecure.get(url)
             // console.log(response);
             return response.data;
         }

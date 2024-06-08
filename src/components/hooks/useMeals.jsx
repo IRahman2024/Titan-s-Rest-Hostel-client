@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
+import useAxiosSecure from "./useAxiosScure";
 
 const useMeals = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosSecure();
 
     const { data: menu=[], isPending: loader, refetch } = useQuery({
         queryKey: ['meals'],
