@@ -2,9 +2,11 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import useAuth from "../hooks/useAuth";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+
+
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
     const {
@@ -19,24 +21,25 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(data);
+                // console.log(data);
                 updateUserProfile(data.name, data.photoURL)
                     .then(result => {
-                        toast('SignUp Successfull!');
+                        // toast('SignUp Successfull!');
                         //create user entry in database
-                        // const userInfo = {
-                        //     name: data.name,
-                        //     email: data.email,
-                        //     badge: 'Bronze'
-                        // }
-                        // axiosPublic.post('/users', userInfo)
-                        // .then(res =>{
-                        //     if(res.data.insertedId){
-                        //         console.log('user was added');
-                        //         console.log('update result: ', result);
-                        //         toast('SignUp Successful!');
-                        //     }
-                        // })
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            image: data.photoURL,
+                            badge: 'Bronze'
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user was added');
+                                    console.log('update result: ', result);
+                                    toast('SignUp Successful!');
+                                }
+                            })
                     })
             })
             .catch(err => {

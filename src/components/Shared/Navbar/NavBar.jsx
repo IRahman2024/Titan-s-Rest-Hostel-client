@@ -11,7 +11,7 @@ const NavBar = () => {
         <li className="mx-2"><Link to='/meals'>Meals</Link></li>
         <li className="mx-2"><Link to='/'>Upcoming Meals</Link></li>
         <li className="mx-2"><Link to='/'>Notifications</Link></li>
-        <li className="mx-2"><Link to='/'>Dashboard</Link></li>
+        <li className="mx-2"><Link to='/dashBoard'>Dashboard</Link></li>
         <li className="mx-2"><Link to='/addMeals'>Add Meal(temporary)</Link></li>
     </>
     console.log(user);
