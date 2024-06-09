@@ -1,8 +1,10 @@
+import { Rating } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
 
 const MealCard = ({ meal }) => {
     //todo: rating missing
-    const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id } = meal;
+    const { name, price, image, _id, rating } = meal;
+    // const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id, rating } = meal;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img
@@ -11,7 +13,14 @@ const MealCard = ({ meal }) => {
             <p className="bg-black rounded-xl p-2 text-white absolute  right-2 top-3">$ {price}</p>
             <div className="card-body bg-green-800 rounded-b-2xl">
                 <h2 className="card-title">{name}</h2>
-                <p>${price}</p>
+                <div className="flex items-center">
+                    Rating: <Rating
+                        style={{ maxWidth: 180 }}
+                        value={rating}
+                        readOnly
+                    />
+                </div>
+                <p>Price: ${price}</p>
                 <div className="card-actions justify-end">
                     <Link to={`/meals/${_id}`}>
                         <button

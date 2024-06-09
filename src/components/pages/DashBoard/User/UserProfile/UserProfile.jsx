@@ -22,14 +22,15 @@ const UserProfile = () => {
     }
 
     const { name, email, image, badge, about } = userProfile;
-    console.log(about?.bio);
+    // console.log(about);
 
-    const handleUpdate = async(e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
         const bio = document.getElementById('bio-textarea').value;
         console.log(bio);
-        const res = await axiosSecure.put(`/users/${user.email}`, {bio: bio});
+        const res = await axiosSecure.put(`/users/${user.email}`, { bio: bio });
         console.log(res);
+        setAbout(false);
         refetch();
     }
 
@@ -66,14 +67,16 @@ const UserProfile = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid justify-items-end gap-2">
-                <textarea
-                    id="bio-textarea"
-                    className="textarea textarea-primary" placeholder="Bio"></textarea>
-                <button
-                    onClick={handleUpdate}
-                    className="btn btn-square px-10">Add</button>
-            </div>
+            {
+                addAbout ? <div className="grid justify-items-end gap-2">
+                    <textarea
+                        id="bio-textarea"
+                        className="textarea textarea-primary" placeholder="Bio"></textarea>
+                    <button
+                        onClick={handleUpdate}
+                        className="btn btn-square px-10">Add</button>
+                </div> : " "
+            }
         </div>
     );
 };

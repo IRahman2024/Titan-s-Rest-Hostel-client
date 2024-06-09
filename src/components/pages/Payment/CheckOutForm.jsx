@@ -14,7 +14,7 @@ const CheckOutForm = () => {
     const [clientSecret, setClientSecret] = useState();
 
     const packageName = useParams();
-    console.log(user);
+    // console.log(user);
     const packageSelected = {
         gold: 200,
         silver: 500,

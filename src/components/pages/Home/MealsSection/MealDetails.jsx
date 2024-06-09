@@ -3,6 +3,8 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { useState } from "react";
+import { Rating } from "@smastrom/react-rating";
+import '@smastrom/react-rating/style.css'
 
 const MealDetails = () => {
 
@@ -23,7 +25,7 @@ const MealDetails = () => {
         return <span className="loading loading-spinner loading-lg"></span>
     }
 
-    const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id } = meal;
+    const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id, rating, postTime } = meal;
 
     console.log(like);
 
@@ -38,14 +40,24 @@ const MealDetails = () => {
                 <p>Ingredients: {ingredients}</p>
                 <p>Distributor name: {distributorName}</p>
                 <p>Distributor email: {distributorEmail}</p>
+                <div className="flex items-center">
+                    Rating: <Rating
+                        style={{ maxWidth: 180 }}
+                        value={rating}
+                        readOnly
+                    />
+                </div>
+                <p>Post Time: {postTime}</p>
+                <p>Category: {category}</p>
+                <p>Price: ${price}</p>
                 <div className="card-actions justify-end">
                     {
-                        like ? <button onClick={()=>setLike(false)} className="btn btn-primary">
+                        like ? <button onClick={() => setLike(false)} className="btn btn-primary">
                             <AiFillLike />Unlike</button> :
-                            <button 
-                            onClick={()=>setLike(true)}
-                            className="btn btn-primary">
-                            <AiOutlineLike />Like</button>
+                            <button
+                                onClick={() => setLike(true)}
+                                className="btn btn-primary">
+                                <AiOutlineLike />Like</button>
                     }
 
 

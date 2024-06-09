@@ -9,6 +9,7 @@ import DashBoard from "../pages/DashBoard/DashBoard";
 import UserProfile from "../pages/DashBoard/User/UserProfile/UserProfile";
 import SignUp from "../pages/SignUp/SignUp";
 import Payment from "../pages/Payment/Payment";
+import PaymentHistory from "../pages/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
             {
                 path:'checkout/:package',
                 element: <Payment></Payment>
+            },
+            {
+                path:'paymentHistory',
+                element: <PaymentHistory></PaymentHistory>
             },
         ]
 
