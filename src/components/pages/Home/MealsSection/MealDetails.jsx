@@ -20,7 +20,7 @@ const MealDetails = () => {
     const { user } = useAuth();
 
     const { id } = useParams();
-
+    //meal info loader
     const { data: meal, isPending: loader, refetch } = useQuery({
         queryKey: ['singleMeal'],
         queryFn: async () => {
@@ -29,26 +29,30 @@ const MealDetails = () => {
             return res.data;
         }
     })
+    //review loaders
+    const { data: reviews, loader: loader2, refetch: refetch2 } = useGetPublic('reviews', `/reviews/${id}`)
 
-    const { data: reviews, loader: loader2, refetch: refetch2 } = useGetPublic('reviews', '/reviews')
+    // const {_id} = meal;
 
-    // console.log(reviews);
 
-    const handleUpdate = async (_id) => {
+    console.log(id);
+
+    const handleReview = async (_id) => {
         // e.preventDefault();
         const text = document.getElementById('bio-textarea').value;
         document.getElementById(_id).close();
 
         const review = {
-            mealId: meal.mealId,
+            reviewId: id,
+            title: meal.name,
             review: text,
             userName: user.displayName,
             email: user.email,
             image: user.photoURL
         }
-        // console.log('food review ', review);
+        console.log('food review ', review);
         const res = await axiosSecure.post(`/reviews`, review)
-            .then(result => {
+            .then(() => {
                 Swal.fire({
                     title: "Review Accepted!",
                     text: `Thanks Your Review`,
@@ -59,6 +63,26 @@ const MealDetails = () => {
         console.log(res);
         refetch();
         refetch2();
+    }
+
+    const handleRequest = async () => {
+        const request = {
+            title: meal.name,
+            email: user.email,
+            name: user.displayName,
+            status: 'Requested'
+        }
+        console.log(request);
+
+
+        axiosSecure.post('/request', request)
+            .then(() => {
+                Swal.fire({
+                    title: "Request Successful",
+                    text: `Your Request Has Been Received`,
+                    icon: "success"
+                });
+            })
     }
 
     if (loader) {
@@ -103,9 +127,9 @@ const MealDetails = () => {
                                     className="btn btn-primary">
                                     <AiOutlineLike />Like</button>
                         }
-
-
-                        <button className="btn btn-success">Request</button>
+                        <button
+                            onClick={handleRequest}
+                            className="btn btn-success">Request</button>
 
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
                         <button className="btn btn-error" onClick={() => document.getElementById(_id).showModal()}>Review</button>
@@ -123,7 +147,7 @@ const MealDetails = () => {
 
                                 <div className="modal-action">
                                     <button
-                                        onClick={() => handleUpdate(_id)}
+                                        onClick={() => handleReview(_id)}
                                         className="btn">Done</button>
                                     <form
                                         method="dialog"
@@ -138,15 +162,18 @@ const MealDetails = () => {
                     </div>
                 </div>
             </div>
-            {/* todo */}
-            <div className="flex flex-col items-center my-4">
-                <p className="text-3xl font-semibold">Total review: {reviews?.length}</p>
-                <div className="grid grid-cols-3 gap-3">
-                    {
-                        reviews.map((review, idx) => <ReviewCard key={idx} data={review}></ReviewCard>)
-                    }
-                </div>
-            </div>
+            {/* reviews */}
+            {
+                loader2 ? <p>Please wait.. loading</p> :
+                    <div className="flex flex-col items-center my-4">
+                        <p className="text-3xl font-semibold">Total review: {reviews?.length}</p>
+                        <div className="grid grid-cols-3 gap-3">
+                            {
+                                reviews?.map((review, idx) => <ReviewCard key={idx} data={review}></ReviewCard>)
+                            }
+                        </div>
+                    </div>
+            }
         </div>
     );
 };

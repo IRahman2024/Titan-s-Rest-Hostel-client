@@ -25,7 +25,6 @@ const MealCard = ({ meal }) => {
                 <div className="card-actions justify-end">
                     <Link to={`/meals/${_id}`}>
                         <button
-                            // onClick={() => handleAddToCart(item)}
                             className="btn border-0 border-b-4 border-yellow-100">Details
                         </button>
                     </Link>
