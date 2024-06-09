@@ -14,7 +14,7 @@ const NavBar = () => {
         <li className="mx-2"><Link to='/dashBoard'>Dashboard</Link></li>
         <li className="mx-2"><Link to='/addMeals'>Add Meal(temporary)</Link></li>
     </>
-    console.log(user);
+    // console.log(user);
     const handleLogOut = () => {
         // console.log('dgdgddgf');
         return logOut()

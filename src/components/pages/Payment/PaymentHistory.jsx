@@ -7,19 +7,23 @@ const PaymentHistory = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const { data: payments } = useQuery({
-        queryKey: ['payments', user.email],
+    const { data: payments, isPending } = useQuery({
+        queryKey: ['payments', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/payments/${user.email}`);
             return res.data;
         }
     })
+
+    if(isPending){
+        return <p>Loading. Please wait...</p>
+    }
     
-    if (!payments.length) {
+    if (!payments?.length) {
         return <p className="text-4xl text-black">No transaction found</p>
     }
 
-    // console.log(payments.length);
+    // console.log(payments?.length);
     
     return (
         <div>

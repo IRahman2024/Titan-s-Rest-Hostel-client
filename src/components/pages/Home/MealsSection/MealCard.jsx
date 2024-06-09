@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const MealCard = ({ meal }) => {
     //todo: rating missing
     const { name, price, image, _id, rating } = meal;
+    // console.log(meal);
     // const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id, rating } = meal;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">

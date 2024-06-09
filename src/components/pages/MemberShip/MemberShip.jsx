@@ -3,7 +3,7 @@
 // import platinum from '../../../../public/badge/platinum.png'
 
 import { Link } from 'react-router-dom';
-import './memberCard.css'
+import './memberCard.css';
 
 const MemberShip = () => {
     return (
@@ -195,7 +195,6 @@ const MemberShip = () => {
                     </Link>
                 </div>
             </div>
-
             <div className="pack-container">
                 <div className="header">
                     <p className="title">

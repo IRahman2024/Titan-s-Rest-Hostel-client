@@ -22,9 +22,6 @@ const MealsSection = () => {
 
     return (
         <div>
-            <Helmet>
-                <title>Bistro Boss | Orders</title>
-            </Helmet>
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <Tab>Breakfast</Tab>

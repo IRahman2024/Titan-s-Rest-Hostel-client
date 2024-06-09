@@ -22,7 +22,7 @@ const UserProfile = () => {
     }
 
     const { name, email, image, badge, about } = userProfile;
-    // console.log(about);
+    // console.log(about.bio);
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -70,6 +70,7 @@ const UserProfile = () => {
             {
                 addAbout ? <div className="grid justify-items-end gap-2">
                     <textarea
+                        defaultValue={about.bio}
                         id="bio-textarea"
                         className="textarea textarea-primary" placeholder="Bio"></textarea>
                     <button
