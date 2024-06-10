@@ -6,7 +6,7 @@ const useGetPublic = (key, url) => {
     
     const axiosPublic = useAxiosPublic();
     const { data, isPending: loader, refetch } = useQuery({
-        queryKey: key,
+        queryKey: [key],
         queryFn: async () => {
             const res = await axiosPublic.get(url);
             return res.data;

@@ -7,7 +7,7 @@ import { CiMenuBurger, CiViewList } from "react-icons/ci";
 import { MdContactPhone, MdMenuBook } from "react-icons/md";
 // import useCarts from "../../hooks/useCarts";
 import { PiForkKnifeFill } from "react-icons/pi";
-import { IoPersonCircleSharp } from "react-icons/io5";
+import { IoFastFood, IoPersonCircleSharp } from "react-icons/io5";
 // import useAdmin from "../../hooks/useAdmin";
 
 const DashBoard = () => {
@@ -64,11 +64,11 @@ const DashBoard = () => {
                             </li> */}
                             <li className="p-2">
                                 <NavLink to='/dashboard/userProfile'>
-                                <IoPersonCircleSharp />
+                                    <IoPersonCircleSharp />
                                     User Profile</NavLink>
                             </li>
                             <li className="p-2">
-                                <NavLink to='/dashboard/review'>
+                                <NavLink to='/dashboard/MyReview'>
                                     <FaRankingStar />
                                     My Review</NavLink>
                             </li>
@@ -77,17 +77,18 @@ const DashBoard = () => {
                                     <CiViewList />
                                     Payment History</NavLink>
                             </li>
-                            {/* <li className="p-2">
-                                    <NavLink to='/dashboard/allUser'>
-                                        <FaUsers></FaUsers>
-                                        All User</NavLink>
-                                </li> */}
+                            <li className="p-2">
+                                <NavLink to='/dashboard/myRequest'>
+                                    <IoFastFood />
+                                    My Request</NavLink>
+                            </li>
+
                         </>
                     }
 
-                    <li className="divider"></li>
+                    {/* <li className="divider"></li>
 
-                    {/* common side-bar */}
+                    common side-bar
                     <li className="p-2">
                         <NavLink to='/'>
                             <FaHome />
@@ -107,7 +108,7 @@ const DashBoard = () => {
                         <NavLink to='/'>
                             <MdContactPhone></MdContactPhone>
                             Contact</NavLink>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
             <div className="flex-1 p-8">

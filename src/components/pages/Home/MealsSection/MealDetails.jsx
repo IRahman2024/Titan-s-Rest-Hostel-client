@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import '@smastrom/react-rating/style.css'
 import { Helmet } from "react-helmet-async";
@@ -21,7 +21,7 @@ const MealDetails = () => {
 
     const { id } = useParams();
     //meal info loader
-    const { data: meal, isPending: loader, refetch } = useQuery({
+    const { data: meal = {}, isPending: loader, refetch } = useQuery({
         queryKey: ['singleMeal'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/meals/${id}`);
@@ -29,13 +29,21 @@ const MealDetails = () => {
             return res.data;
         }
     })
-    //review loaders
+
+    const isLike = meal?.likeArray?.includes(user?.email) || false;
+    console.log({ isLike });
+
+    const { data, loader: loader3, refetch: refetch3 } = useGetPublic('review-email-title', `/reviews-email-title/${user?.email}?title=${meal?.name}`);
+    // refetch3();
+    // console.log(data.like);
+
+    //review loaders only for specific food
     const { data: reviews, loader: loader2, refetch: refetch2 } = useGetPublic('reviews', `/reviews/${id}`)
 
     // const {_id} = meal;
 
 
-    console.log(id);
+    // console.log(meal);
 
     const handleReview = async (_id) => {
         // e.preventDefault();
@@ -51,7 +59,8 @@ const MealDetails = () => {
             image: user.photoURL
         }
         console.log('food review ', review);
-        const res = await axiosSecure.post(`/reviews`, review)
+        const res = await axiosSecure.post(`/reviews`, review);
+        const res2 = await axiosPublic.patch(`/mealsReview/${id}`)
             .then(() => {
                 Swal.fire({
                     title: "Review Accepted!",
@@ -60,21 +69,39 @@ const MealDetails = () => {
                 });
             })
 
-        console.log(res);
+        // console.log(res);
+        // console.log(res2);
         refetch();
         refetch2();
+    }
+
+    const handleLike = async () => {
+        // console.log(id);
+        //like er count +
+       
+        let likeArray = [];
+        likeArray.push(user.email);
+        //setting likeArray
+        const res = await axiosPublic.patch(`/meals-likeArray/${meal._id}`, likeArray);
+        //setting likeCount
+        const res2 = await axiosPublic.patch(`/likeCount/${id}`);
+        if (res.data.modifiedCount) {
+            refetch();
+        }
+        console.log(res, res2);
+
     }
 
     const handleRequest = async () => {
         const request = {
             title: meal.name,
+            requestId: id,
             email: user.email,
             name: user.displayName,
-            status: 'Requested'
+            status: 'Requested',
+            review: reviews?.length,
+            like: meal?.likeCount
         }
-        console.log(request);
-
-
         axiosSecure.post('/request', request)
             .then(() => {
                 Swal.fire({
@@ -91,7 +118,7 @@ const MealDetails = () => {
 
     const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id, rating, postTime } = meal;
 
-    // console.log(reviews);
+    // console.log(showLike);
 
     return (
         <div>
@@ -120,18 +147,15 @@ const MealDetails = () => {
                     <p>Price: ${price}</p>
                     <div className="card-actions justify-end">
                         {
-                            like ? <button onClick={() => setLike(false)} className="btn btn-primary">
-                                <AiFillLike />Unlike</button> :
+                            isLike ? '' :
                                 <button
-                                    onClick={() => setLike(true)}
+                                    onClick={() => handleLike()}
                                     className="btn btn-primary">
                                     <AiOutlineLike />Like</button>
                         }
                         <button
                             onClick={handleRequest}
                             className="btn btn-success">Request</button>
-
-                        {/* Open the modal using document.getElementById('ID').showModal() method */}
                         <button className="btn btn-error" onClick={() => document.getElementById(_id).showModal()}>Review</button>
                         <dialog id={_id} className="modal">
                             <div className="modal-box">
@@ -157,14 +181,14 @@ const MealDetails = () => {
                                 </div>
                             </div>
                         </dialog>
-
-                        {/* <button className="btn btn-error">Review</button> */}
                     </div>
                 </div>
             </div>
             {/* reviews */}
             {
-                loader2 ? <p>Please wait.. loading</p> :
+                loader2 ? <div className="flex flex-col items-center my-4">
+                    < p>Please wait.. loading</p>
+                </div> :
                     <div className="flex flex-col items-center my-4">
                         <p className="text-3xl font-semibold">Total review: {reviews?.length}</p>
                         <div className="grid grid-cols-3 gap-3">

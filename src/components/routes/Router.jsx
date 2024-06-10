@@ -10,6 +10,8 @@ import UserProfile from "../pages/DashBoard/User/UserProfile/UserProfile";
 import SignUp from "../pages/SignUp/SignUp";
 import Payment from "../pages/Payment/Payment";
 import PaymentHistory from "../pages/Payment/PaymentHistory";
+import MyReview from "../pages/DashBoard/User/MyReview/MyReview";
+import MyRequest from "../pages/DashBoard/User/My Request/MyRequest";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +59,14 @@ export const router = createBrowserRouter([
             {
                 path:'paymentHistory',
                 element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path:'myReview',
+                element: <MyReview></MyReview>
+            },
+            {
+                path:'myRequest',
+                element: <MyRequest></MyRequest>
             },
         ]
 
