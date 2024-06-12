@@ -12,6 +12,11 @@ import Payment from "../pages/Payment/Payment";
 import PaymentHistory from "../pages/Payment/PaymentHistory";
 import MyReview from "../pages/DashBoard/User/MyReview/MyReview";
 import MyRequest from "../pages/DashBoard/User/My Request/MyRequest";
+import ManageUsers from "../pages/DashBoard/Admin/Mange Users/ManageUsers";
+import AllMeals from "../pages/DashBoard/Admin/AllMeals/AllMeals";
+import AllReviews from "../pages/DashBoard/Admin/AllReviews/AllReviews";
+import UpdateItem from "../pages/DashBoard/Admin/UpdateItem/UpdateItem";
+import AdminProfile from "../pages/DashBoard/Admin/Admin Profile/AdminProfile";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +53,7 @@ export const router = createBrowserRouter([
         path: 'dashBoard',
         element: <DashBoard></DashBoard>,
         children:  [
+            //normal user
             {
                 path:'/dashBoard/userProfile',
                 element: <UserProfile></UserProfile>
@@ -67,6 +73,32 @@ export const router = createBrowserRouter([
             {
                 path:'myRequest',
                 element: <MyRequest></MyRequest>
+            },
+            //admin only user
+            {
+                path: 'adminProfile',
+                element: <AdminProfile></AdminProfile>
+            },
+            {
+                path: 'manageUsers',
+                element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: 'allMeals',
+                element: <AllMeals></AllMeals>
+            },
+            {
+                path: 'allReviews',
+                element: <AllReviews></AllReviews>
+            },
+            {
+                path: 'updateItem/:id',
+                element: <UpdateItem></UpdateItem>,
+                loader: ({params}) => fetch(`http://localhost:5000/meals/${params.id}`)
+            },
+            {
+                path: 'addMeal',
+                element: <AddMeals></AddMeals>
             },
         ]
 

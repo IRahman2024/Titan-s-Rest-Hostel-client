@@ -18,7 +18,7 @@ const Meals = () => {
         e.preventDefault();
         setSearch(e.target.search.value);
     }
-    console.log(range);
+    // console.log(range);
 
     const url = `/meals?name=${search}&category=${category}&range=${range}`;
     const { data: meals, isPending: loader } = useQuery({
@@ -39,7 +39,7 @@ const Meals = () => {
 
     return (
         <div>
-            <div>
+            <div className="flex">
                 <div className="dropdown btn-primary">
                     <div tabIndex={0} role="button" className="btn m-1 px-7">Filter By Category</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-blue-500 rounded-box w-52">

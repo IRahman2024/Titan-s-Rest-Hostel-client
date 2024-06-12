@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,7 +22,7 @@ const SignUp = () => {
     const onSubmit = (data) => {
         createUser(data.email, data.password)
             .then(result => {
-                const loggedUser = result.user;
+                // const loggedUser = result.user;
                 // console.log(data);
                 updateUserProfile(data.name, data.photoURL)
                     .then(result => {
@@ -30,7 +32,8 @@ const SignUp = () => {
                             name: data.name,
                             email: data.email,
                             image: data.photoURL,
-                            badge: 'Bronze'
+                            badge: 'Bronze',
+                            role: 'user'
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {

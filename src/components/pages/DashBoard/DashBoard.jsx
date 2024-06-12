@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
-import { FaBook, FaHome, FaShoppingBag, FaUsers } from "react-icons/fa";
+import { FaBook, FaHome, FaShoppingBag, FaUser, FaUsers } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { FaRankingStar } from "react-icons/fa6";
 import { CiMenuBurger, CiViewList } from "react-icons/ci";
@@ -8,13 +8,14 @@ import { MdContactPhone, MdMenuBook } from "react-icons/md";
 // import useCarts from "../../hooks/useCarts";
 import { PiForkKnifeFill } from "react-icons/pi";
 import { IoFastFood, IoPersonCircleSharp } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 // import useAdmin from "../../hooks/useAdmin";
 
 const DashBoard = () => {
     // const [cart] = useCarts();
 
     // const [isAdmin] = useAdmin();
-    const isAdmin = !true;
+    const isAdmin = true;
 
     return (
         <div className="flex">
@@ -26,29 +27,44 @@ const DashBoard = () => {
                         isAdmin ? <>
                             {/* // admin panel */}
                             <li className="p-2">
-                                <NavLink to='/dashboard/adminHome'>
+                                <NavLink to='/'>
                                     <FaHome />
-                                    Admin Home</NavLink>
-                            </li>
-                            {/* <li className="p-2">
-                                <NavLink to='/dashboard/addItems'>
-                                    <PiForkKnifeFill />
-                                    Add Items({cart.length})</NavLink>
-                            </li> */}
-                            <li className="p-2">
-                                <NavLink to='/dashboard/manageItems'>
-                                    <CiMenuBurger></CiMenuBurger>
-                                    Manage Items</NavLink>
+                                    Home</NavLink>
                             </li>
                             <li className="p-2">
-                                <NavLink to='/dashboard/bookings'>
-                                    <FaBook />
-                                    Manage Bookings</NavLink>
+                                <NavLink to='/dashboard/adminProfile'>
+                                    <CgProfile />
+                                    Admin Profile</NavLink>
                             </li>
                             <li className="p-2">
-                                <NavLink to='/dashboard/users'>
-                                    <FaUsers></FaUsers>
-                                    All User</NavLink>
+                                <NavLink to='/dashboard/manageUsers'>
+                                    <FaUsers />
+                                    Manage Users</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/dashBoard/addMeal'>
+                                    <IoFastFood />
+                                    Add Meal</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/dashBoard/allMeals'>
+                                    <IoFastFood />
+                                    All Meals</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/dashBoard/allReviews'>
+                                    <CiViewList />
+                                    All Reviews</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/'>
+                                    <IoFastFood />
+                                    Serve Meals</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/'>
+                                    <CiViewList />
+                                    Up Coming Meals</NavLink>
                             </li>
                         </> : <>
                             {/* // user */}
