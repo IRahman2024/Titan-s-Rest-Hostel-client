@@ -17,6 +17,8 @@ import AllMeals from "../pages/DashBoard/Admin/AllMeals/AllMeals";
 import AllReviews from "../pages/DashBoard/Admin/AllReviews/AllReviews";
 import UpdateItem from "../pages/DashBoard/Admin/UpdateItem/UpdateItem";
 import AdminProfile from "../pages/DashBoard/Admin/Admin Profile/AdminProfile";
+import Serve from "../pages/DashBoard/Admin/Serve/Serve";
+import UpcomingMeals from "../pages/DashBoard/Admin/Upcoming Meals/UpcomingMeals";
 
 export const router = createBrowserRouter([
     {
@@ -90,6 +92,14 @@ export const router = createBrowserRouter([
             {
                 path: 'allReviews',
                 element: <AllReviews></AllReviews>
+            },
+            {
+                path: 'serve',
+                element: <Serve></Serve>
+            },
+            {
+                path: 'upComing',
+                element: <UpcomingMeals></UpcomingMeals>
             },
             {
                 path: 'updateItem/:id',

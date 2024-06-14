@@ -57,12 +57,12 @@ const DashBoard = () => {
                                     All Reviews</NavLink>
                             </li>
                             <li className="p-2">
-                                <NavLink to='/'>
+                                <NavLink to='/dashBoard/serve'>
                                     <IoFastFood />
                                     Serve Meals</NavLink>
                             </li>
                             <li className="p-2">
-                                <NavLink to='/'>
+                                <NavLink to='/dashboard/upComing'>
                                     <CiViewList />
                                     Up Coming Meals</NavLink>
                             </li>

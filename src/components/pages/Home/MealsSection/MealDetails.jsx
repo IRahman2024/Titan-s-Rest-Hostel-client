@@ -31,7 +31,7 @@ const MealDetails = () => {
     })
 
     const isLike = meal?.likeArray?.includes(user?.email) || false;
-    console.log({ isLike });
+    // console.log({ isLike });
 
     const { data, loader: loader3, refetch: refetch3 } = useGetPublic('review-email-title', `/reviews-email-title/${user?.email}?title=${meal?.name}`);
     // refetch3();
