@@ -9,6 +9,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import AuthProviders from './Providers/AuthProviders';
+import { ModalContainer } from 'reoverlay';
 
 
 

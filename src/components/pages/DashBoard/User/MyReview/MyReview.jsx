@@ -14,16 +14,17 @@ const MyReview = () => {
     const handleEdit = async (id) => {
         // console.log(id);
         const text = document.getElementById('bio-textarea').value;
-        document.getElementById(data._id).close();
+        // console.log();
+        document.getElementById(id).close();
         console.log(text);
-        // const review ={
-        //     review: text
-        // }
+        const review ={
+            review: text
+        }
 
-        // const res = await axiosPublic.patch(`/review/${id}`, review);
-        // if(res.status == 200){
-        //     refetch();
-        // }
+        const res = await axiosPublic.patch(`/review/${id}`, review);
+        if(res.status == 200){
+            refetch();
+        }
         // console.log(res);
     }
 
