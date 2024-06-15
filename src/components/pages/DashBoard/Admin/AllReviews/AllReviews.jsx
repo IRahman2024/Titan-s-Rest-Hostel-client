@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosScure";
 import useGetPublic from "../../../../hooks/useGetPublic";
+import { Link } from "react-router-dom";
 
 const AllReviews = () => {
     const axiosSecure = useAxiosSecure();
@@ -11,7 +12,7 @@ const AllReviews = () => {
         return <p>please wait</p>
     }
 
-    if(!data.length){
+    if (!data.length) {
         return <p className="text-4xl">No Reviews Yet</p>
     }
 
@@ -27,19 +28,22 @@ const AllReviews = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then(() => {
-            axiosSecure.delete(`review/${id}`)
-                .then(res => {
-                    console.log(res.data);
-                    if (res.data.deletedCount > 0) {
-                        refetch();
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                    }
-                })
+        }).then((res) => {
+            // console.log(res);
+            if (res.isConfirmed) {
+                axiosSecure.delete(`review/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
         });
     }
 
@@ -86,8 +90,11 @@ const AllReviews = () => {
                                         className="btn btn-error btn-xs">Delete</button>
                                 </td>
                                 <td>
-                                    <button
-                                        className="btn btn-success btn-xs">View Meal</button>
+                                    <Link to={`/meals/${data.reviewId}`}>
+                                        <button
+                                            className="btn btn-success btn-xs">View Meal
+                                        </button>
+                                    </Link>
                                 </td>
                                 <td>
                                     {data.badge}

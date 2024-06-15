@@ -15,7 +15,7 @@ const DashBoard = () => {
     // const [cart] = useCarts();
 
     // const [isAdmin] = useAdmin();
-    const isAdmin = true;
+    const isAdmin = !false;
 
     return (
         <div className="flex">

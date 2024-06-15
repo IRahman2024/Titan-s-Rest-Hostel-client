@@ -30,8 +30,15 @@ const MealDetails = () => {
         }
     })
 
+    const {data: userEmail, loader: userLoader} = useGetPublic('user-for-meal', `/users/${user?.email}`)
+
     const isLike = meal?.likeArray?.includes(user?.email) || false;
-    // console.log({ isLike });
+    const isAvailable = meal?.status === 'available';
+    const isPremium = !isAvailable && userEmail?.badge !== 'Bronze'
+
+
+    // console.log({ isAvailable });
+    // console.log(userEmail?.badge !== 'Bronze');
 
     const { data, loader: loader3, refetch: refetch3 } = useGetPublic('review-email-title', `/reviews-email-title/${user?.email}?title=${meal?.name}`);
     // refetch3();
@@ -43,7 +50,7 @@ const MealDetails = () => {
     // const {_id} = meal;
 
 
-    // console.log(meal);
+    // console.log(user);
 
     const handleReview = async (_id) => {
         // e.preventDefault();
@@ -78,7 +85,7 @@ const MealDetails = () => {
     const handleLike = async () => {
         // console.log(id);
         //like er count +
-       
+
         let likeArray = [];
         likeArray.push(user.email);
         //setting likeArray
@@ -116,7 +123,7 @@ const MealDetails = () => {
         return <span className="loading loading-spinner loading-lg"></span>
     }
 
-    const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id, rating, postTime } = meal;
+    const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id, rating, postTime, status } = meal;
 
     // console.log(showLike);
 
@@ -146,46 +153,84 @@ const MealDetails = () => {
                     <p>Category: {category}</p>
                     <p>Price: ${price}</p>
                     <div className="card-actions justify-end">
-                        {
+                        {/* {
                             isLike ? '' :
                                 <button
                                     onClick={() => handleLike()}
                                     className="btn btn-primary">
                                     <AiOutlineLike />Like</button>
+                        } */}
+                        {
+                            !isLike && isPremium &&
+                                <button
+                                    onClick={() => handleLike()}
+                                    className="btn btn-primary">
+                                    <AiOutlineLike />Like</button>
                         }
-                        <button
-                            onClick={handleRequest}
-                            className="btn btn-success">Request</button>
-                        <button className="btn btn-error" onClick={() => document.getElementById(_id).showModal()}>Review</button>
-                        <dialog id={_id} className="modal">
-                            <div className="modal-box">
-                                <h3 className="font-bold text-lg">Write Your Review Here</h3>
-                                {/* text area here */}
+                        {
+                            !isLike && isAvailable &&
+                                <button
+                                    onClick={() => handleLike()}
+                                    className="btn btn-primary">
+                                    <AiOutlineLike />Like
+                                </button>
+                        }
+                        {
+                            status === 'upcoming' ? '' : <button
+                                onClick={handleRequest}
+                                className="btn btn-success">Request
+                            </button>
+                        }
+                        {
+                            status === 'upcoming' ? '' : <>
+                                <button className="btn btn-error" onClick={() => document.getElementById(_id).showModal()}>Review</button>
+                                <dialog id={_id} className="modal">
+                                    <div className="modal-box">
+                                        <h3 className="font-bold text-lg">Write Your Review Here</h3>
+                                        {/* text area here */}
 
-                                <div className="grid justify-items-start gap-2">
-                                    <textarea
-                                        id="bio-textarea"
-                                        className="textarea textarea-primary w-full" placeholder="Bio">
-                                    </textarea>
-                                </div>
+                                        <div className="grid justify-items-start gap-2">
+                                            <textarea
+                                                id="bio-textarea"
+                                                className="textarea textarea-primary w-full" placeholder="Bio">
+                                            </textarea>
+                                        </div>
 
-                                <div className="modal-action">
-                                    <button
-                                        onClick={() => handleReview(_id)}
-                                        className="btn">Done</button>
-                                    <form
-                                        method="dialog"
-                                    >
-                                        {/* if there is a button in form, it will close the modal */}
-                                    </form>
-                                </div>
-                            </div>
-                        </dialog>
+                                        <div className="modal-action">
+                                            <button
+                                                onClick={() => handleReview(_id)}
+                                                className="btn">Done</button>
+                                            <form
+                                                method="dialog"
+                                            >
+                                                {/* if there is a button in form, it will close the modal */}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </dialog>
+                            </>
+                        }
                     </div>
                 </div>
             </div>
             {/* reviews */}
             {
+                status === 'upcoming' ? null : (
+                    loader2 ? <div className="flex flex-col items-center my-4">
+                        < p>Please wait.. loading</p>
+                    </div> :
+                        <div className="flex flex-col items-center my-4">
+                            <p className="text-3xl font-semibold">Total review: {reviews?.length}</p>
+                            <div className="grid grid-cols-3 gap-3">
+                                {
+                                    reviews?.map((review, idx) => <ReviewCard key={idx} data={review}></ReviewCard>)
+                                }
+                            </div>
+                        </div>
+                )
+            }
+
+            {/* {
                 loader2 ? <div className="flex flex-col items-center my-4">
                     < p>Please wait.. loading</p>
                 </div> :
@@ -197,7 +242,8 @@ const MealDetails = () => {
                             }
                         </div>
                     </div>
-            }
+            } */}
+
         </div>
     );
 };

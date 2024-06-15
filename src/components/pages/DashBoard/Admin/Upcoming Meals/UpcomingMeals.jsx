@@ -6,27 +6,53 @@ import Swal from "sweetalert2";
 
 const UpcomingMeals = () => {
     const axiosPublic = useAxiosPublic();
+
+    const { data, loader, refetch } = useGetPublic('upcoming-meal-table-data', '/upcomingMeals');
+    console.log(data);
+
+    if (loader) {
+        return <>
+            <div className="flex flex-col gap-4 w-full">
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+        </>
+    }
+
     const showFormModal = () => {
         Reoverlay.showModal(FormModal)
     }
 
-    const {data, loader, refetch} = useGetPublic('upcoming-meal-table-data', '/upcomingMeals');
-    console.log(data);
-
-    const handlePublish = (id, name) =>{
+    const handlePublish = (id, name) => {
         console.log(name);
         axiosPublic.patch(`/upcomingMeals/${id}`)
-        .then((res) =>{
-            console.log(res.data);
-            if(res.data.modifiedCount){
-                Swal.fire({
-                    title: "Published!",
-                    text: `${name} has been Published.`,
-                    icon: "success"
-                });
-                refetch();
-            }
-        })
+            .then((res) => {
+                console.log(res.data);
+                if (res.data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        title: "Published!",
+                        text: `${name} has been Published.`,
+                        icon: "success"
+                    });
+                }
+            })
     }
 
 

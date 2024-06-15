@@ -5,16 +5,19 @@ import 'reoverlay/lib/ModalWrapper.css';
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosScure";
+import useGetPublic from "../../../../hooks/useGetPublic";
 
 const image_host = import.meta.env.VITE_imagebb_api_key;
 const image_host_api = `https://api.imgbb.com/1/upload?key=${image_host}`;
 
-const FormModal = ({ onSubmit }) => {
+const FormModal = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
     // console.log(user);
+
+    const { refetch } = useGetPublic('upcoming-meal-table-data', '/upcomingMeals');
 
     const {
         register,
@@ -59,6 +62,7 @@ const FormModal = ({ onSubmit }) => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                refetch();
             }
 
             // console.log(mealRes);
@@ -195,7 +199,7 @@ const FormModal = ({ onSubmit }) => {
                             </label>
                         </div>
                         <div className='max-w-1/2 mx-auto mt-4'>
-                            <button className="btn btn-info mr-2">Update Recipe</button>
+                            <button className="btn btn-info mr-2">Add Meal</button>
                             <button onClick={closeModal} className="btn btn-error">Cancel</button>
                         </div>
                     </form>

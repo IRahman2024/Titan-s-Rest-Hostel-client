@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useGetPublic from "../../../../hooks/useGetPublic";
 import MyRequest from "../My Request/MyRequest";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyReview = () => {
     const { user } = useAuth();
@@ -17,12 +18,12 @@ const MyReview = () => {
         // console.log();
         document.getElementById(id).close();
         console.log(text);
-        const review ={
+        const review = {
             review: text
         }
 
         const res = await axiosPublic.patch(`/review/${id}`, review);
-        if(res.status == 200){
+        if (res.status == 200) {
             refetch();
         }
         // console.log(res);
@@ -30,12 +31,29 @@ const MyReview = () => {
 
     const handleDel = async (id) => {
         // console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+            .then(async (res) => {
+                if (res.isConfirmed) {
+                    const res = await axiosPublic.delete(`/review/${id}`);
+                    if (res.status == 200) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        refetch();
+                    }
 
-        const res = await axiosPublic.delete(`/review/${id}`);
-        if (res.status == 200) {
-            refetch();
-        }
-        console.log(res);
+                }
+            })
     }
 
     if (loader) {
@@ -79,7 +97,7 @@ const MyReview = () => {
                                         {data.title ? data.title : 'no data'}
                                     </td>
                                     <td>
-                                        likes baki
+                                        {data.mealInfo.likeCount ? data.mealInfo.likeCount : 0}
                                     </td>
                                     <td>{data.review}</td>
                                     {/* edit btn */}

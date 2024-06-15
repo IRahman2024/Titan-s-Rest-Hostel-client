@@ -2,7 +2,7 @@ import { useState } from "react";
 // import useMeals from "../../hooks/useMeals";
 import MealCard from "../Home/MealsSection/MealCard";
 import './searchbar.css';
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+// import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosScure";
 
@@ -31,7 +31,56 @@ const Meals = () => {
     })
 
     if (loader) {
-        return <span className="loading loading-spinner loading-lg"></span>
+        return <div className="grid grid-cols-4 space-y-3 m-5">
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>
+            <div className="flex flex-col gap-4 w-52 m-5">
+                <div className="skeleton h-32 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+            </div>    
+        </div>
     }
 
     // console.log(meals);

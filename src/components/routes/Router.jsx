@@ -19,6 +19,7 @@ import UpdateItem from "../pages/DashBoard/Admin/UpdateItem/UpdateItem";
 import AdminProfile from "../pages/DashBoard/Admin/Admin Profile/AdminProfile";
 import Serve from "../pages/DashBoard/Admin/Serve/Serve";
 import UpcomingMeals from "../pages/DashBoard/Admin/Upcoming Meals/UpcomingMeals";
+import UpcomingMealNav from "../pages/UpcomingMeal Navbar/UpcomingMealNav";
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +48,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/meals/:id',
+                element: <MealDetails></MealDetails>
+            },
+            {
+                path: '/UpcomingMeals',
+                element: <UpcomingMealNav></UpcomingMealNav>
+            },
+            {
+                path: '/upMeals/:id',
                 element: <MealDetails></MealDetails>
             },
         ]
