@@ -20,11 +20,15 @@ import AdminProfile from "../pages/DashBoard/Admin/Admin Profile/AdminProfile";
 import Serve from "../pages/DashBoard/Admin/Serve/Serve";
 import UpcomingMeals from "../pages/DashBoard/Admin/Upcoming Meals/UpcomingMeals";
 import UpcomingMealNav from "../pages/UpcomingMeal Navbar/UpcomingMealNav";
+import AdminRoutes from "./AdminRoutes";
+import ErrorPage2 from "../../ErrorPage2";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <LayOut></LayOut>,
+        errorElement: <ErrorPage2></ErrorPage2>,
         children: [
             {
                 path: '/',
@@ -62,7 +66,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashBoard',
-        element: <DashBoard></DashBoard>,
+        element: <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
         children:  [
             //normal user
             {
@@ -71,7 +75,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'checkout/:package',
-                element: <Payment></Payment>
+                element: <PrivateRoutes><Payment></Payment></PrivateRoutes>
             },
             {
                 path:'paymentHistory',
@@ -88,36 +92,37 @@ export const router = createBrowserRouter([
             //admin only user
             {
                 path: 'adminProfile',
-                element: <AdminProfile></AdminProfile>
+                element: <AdminRoutes><AdminProfile></AdminProfile></AdminRoutes>
             },
             {
                 path: 'manageUsers',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoutes><ManageUsers></ManageUsers></AdminRoutes>
             },
             {
                 path: 'allMeals',
-                element: <AllMeals></AllMeals>
+                element: <AdminRoutes><AllMeals></AllMeals></AdminRoutes>
             },
             {
                 path: 'allReviews',
-                element: <AllReviews></AllReviews>
+                element: <AdminRoutes><AllReviews></AllReviews></AdminRoutes>
             },
             {
                 path: 'serve',
-                element: <Serve></Serve>
+                element: <AdminRoutes><Serve></Serve></AdminRoutes>
             },
             {
                 path: 'upComing',
-                element: <UpcomingMeals></UpcomingMeals>
+                element: <AdminRoutes><UpcomingMeals></UpcomingMeals></AdminRoutes>
             },
             {
                 path: 'updateItem/:id',
-                element: <UpdateItem></UpdateItem>,
+                element: <AdminRoutes><UpdateItem></UpdateItem></AdminRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5000/meals/${params.id}`)
+                // loader: ({params}) => fetch(`https://server-rosy-nine.vercel.app/meals/${params.id}`)
             },
             {
                 path: 'addMeal',
-                element: <AddMeals></AddMeals>
+                element: <AdminRoutes><AddMeals></AddMeals></AdminRoutes>
             },
         ]
 

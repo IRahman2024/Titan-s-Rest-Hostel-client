@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
+import useAdmin from "../../hooks/useAdmin";
 
 const NavBar = () => {
 
     const { user, logOut } = useAuth();
+    const [isAdmin] = useAdmin();
 
     const navlinks = <>
         <li className="mx-2"><Link to='/'>Home</Link></li>
         <li className="mx-2"><Link to='/meals'>Meals</Link></li>
         <li className="mx-2"><Link to='/UpcomingMeals'>Upcoming Meals</Link></li>
         <li className="mx-2"><Link to='/'>Notifications</Link></li>
-        <li className="mx-2"><Link to='/dashBoard'>Dashboard</Link></li>
+        {isAdmin ? <li className="mx-2"><Link to='/dashBoard/adminProfile'>Dashboard</Link></li> :
+            <li className="mx-2"><Link to='/dashBoard/userProfile'>Dashboard</Link></li>}
+        {/* <li className="mx-2"><Link to='/dashBoard'>Dashboard</Link></li> */}
     </>
     // console.log(user);
     const handleLogOut = () => {
@@ -51,7 +55,7 @@ const NavBar = () => {
                     user ?
                         <>
                             <div role="button" className="btn btn-ghost btn-circle avatar"
-                            title={user?.displayName}
+                                title={user?.displayName}
                             >
                                 <div className="mr-2 w-36 rounded-full">
                                     <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />

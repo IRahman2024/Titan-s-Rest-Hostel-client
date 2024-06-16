@@ -6,10 +6,11 @@ import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-s
 import { ToastContainer, toast } from "react-toastify";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
+import Loader from "../../Shared/Loader/Loader";
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
-    const {signIn} = useAuth()
+    const {signIn, loader} = useAuth()
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -48,6 +49,8 @@ const Login = () => {
         //koto character er capchat chai oita dite hbe 
         loadCaptchaEnginge(6);
     }, [])
+
+    console.log(loader);
 
     return (
         <>

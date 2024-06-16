@@ -5,6 +5,7 @@ import './searchbar.css';
 // import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosScure";
+import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const Meals = () => {
     // const [meals, refetch] = useMeals();
@@ -88,7 +89,7 @@ const Meals = () => {
 
     return (
         <div>
-            <div className="flex">
+            <div className="flex m-4">
                 <div className="dropdown btn-primary">
                     <div tabIndex={0} role="button" className="btn m-1 px-7">Filter By Category</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-blue-500 rounded-box w-52">
@@ -116,6 +117,7 @@ const Meals = () => {
                     </button>
                 </form>
             </div>
+            <SectionTitle heading={'Our Meals'}></SectionTitle>
             <div className="mx-36 my-5 gap-y-5 grid grid-cols-3">
                 {
                     meals.map((meal, idx) => <MealCard key={idx}

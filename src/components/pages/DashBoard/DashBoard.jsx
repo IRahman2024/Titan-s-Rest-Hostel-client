@@ -9,13 +9,15 @@ import { MdContactPhone, MdMenuBook } from "react-icons/md";
 import { PiForkKnifeFill } from "react-icons/pi";
 import { IoFastFood, IoPersonCircleSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import useAdmin from "../../hooks/useAdmin";
 // import useAdmin from "../../hooks/useAdmin";
 
 const DashBoard = () => {
     // const [cart] = useCarts();
 
     // const [isAdmin] = useAdmin();
-    const isAdmin = !false;
+    const [isAdmin] = useAdmin();
+    console.log(isAdmin);
 
     return (
         <div className="flex">
@@ -71,7 +73,7 @@ const DashBoard = () => {
                             <li className="p-2">
                                 <NavLink to='/'>
                                     <FaHome />
-                                    User Home</NavLink>
+                                    Home</NavLink>
                             </li>
                             {/* <li className="p-2">
                                 <NavLink to='/dashboard/cart'>

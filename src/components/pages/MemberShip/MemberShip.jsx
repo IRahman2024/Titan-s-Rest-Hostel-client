@@ -4,11 +4,15 @@
 
 import { Link } from 'react-router-dom';
 import './memberCard.css';
+import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 
 const MemberShip = () => {
     return (
-        <div className='flex gap-4 p-8'>
-            {/* <div className="card w-96 bg-base-100 shadow-xl">
+        <div>
+            <SectionTitle heading={'Buy Subscription'} subHeading={'Buy Once Enjoy For Rest of the stay'}></SectionTitle>
+            <div className='flex gap-4 p-8'>
+
+                {/* <div className="card w-96 bg-base-100 shadow-xl">
                 <figure className='h-60'><img src={silver} /></figure>
                 <div className="card-body">
                     <h2 className="card-title text-3xl">Silver</h2>
@@ -45,255 +49,256 @@ const MemberShip = () => {
                 </div>
             </div> */}
 
-            <div className="pack-container">
-                <div className="header">
-                    <p className="title">
-                        Silver
-                    </p>
-                    <div className="price-container">
-                        <span>$</span>200
-                        <span>/mo</span>
+                <div className="pack-container">
+                    <div className="header">
+                        <p className="title">
+                            Silver
+                        </p>
+                        <div className="price-container">
+                            <span>$</span>200
+                            <span>/mo</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul className="lists">
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Single Bed with Quality Mattress
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Study Desk and Chair
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Wi-Fi Connectivity
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Dining Area
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="button-container">
+                        <Link to={`/dashboard/checkOut/gold`}>
+                            <button className='btn btn-outline btn-success' type="btn">
+                                Upgrade Now
+                            </button>
+                        </Link>
                     </div>
                 </div>
-                <div>
-                    <ul className="lists">
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Single Bed with Quality Mattress
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Study Desk and Chair
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Wi-Fi Connectivity
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Dining Area
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div className="button-container">
-                    <Link to={`/dashboard/checkOut/gold`}>
-                        <button className='btn btn-outline btn-success' type="btn">
-                            Upgrade Now
-                        </button>
-                    </Link>
-                </div>
-            </div>
 
-            <div className="pack-container">
-                <div className="header">
-                    <p className="title">
-                        Gold
-                    </p>
-                    <div className="price-container">
-                        <span>$</span>500
-                        <span>/mo</span>
+                <div className="pack-container">
+                    <div className="header">
+                        <p className="title">
+                            Gold
+                        </p>
+                        <div className="price-container">
+                            <span>$</span>500
+                            <span>/mo</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul className="lists">
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Single Bed with Quality Mattress
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Study Desk and Chair
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Wi-Fi Connectivity
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Dining Area
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Semi-Private Rooms with Shared Bathrooms
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>In-Room Entertainment
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Fitness Center
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="button-container">
+                        <Link to={`/dashboard/checkOut/silver`}>
+                            <button className='btn btn-outline btn-success' type="btn">
+                                Upgrade Now
+                            </button>
+                        </Link>
                     </div>
                 </div>
-                <div>
-                    <ul className="lists">
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Single Bed with Quality Mattress
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Study Desk and Chair
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Wi-Fi Connectivity
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Dining Area
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Semi-Private Rooms with Shared Bathrooms
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>In-Room Entertainment
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Fitness Center
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div className="button-container">
-                    <Link to={`/dashboard/checkOut/silver`}>
-                        <button className='btn btn-outline btn-success' type="btn">
-                            Upgrade Now
-                        </button>
-                    </Link>
-                </div>
-            </div>
-            <div className="pack-container">
-                <div className="header">
-                    <p className="title">
-                        Platinum
-                    </p>
-                    <div className="price-container">
-                        <span>$</span>700
-                        <span>/mo</span>
+                <div className="pack-container">
+                    <div className="header">
+                        <p className="title">
+                            Platinum
+                        </p>
+                        <div className="price-container">
+                            <span>$</span>700
+                            <span>/mo</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul className="lists">
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Single Bed with Quality Mattress
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Study Desk and Chair
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>
+                                    Wi-Fi Connectivity
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Private Rooms with En-suite Bathrooms
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Room Service Options
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Personal Entertainment Systems
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>Private Study Rooms and Conference Spaces
+                                </p>
+                            </li>
+                            <li className="list">
+                                <span>
+                                    <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <p>High-Speed Internet and Streaming Services
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="button-container">
+                        <Link to={`/dashboard/checkOut/platinum`}>
+                            <button className='btn btn-outline btn-success' type="btn">
+                                Upgrade Now
+                            </button>
+                        </Link>
                     </div>
                 </div>
-                <div>
-                    <ul className="lists">
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Single Bed with Quality Mattress
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Study Desk and Chair
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>
-                                Wi-Fi Connectivity
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Private Rooms with En-suite Bathrooms
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Room Service Options
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Personal Entertainment Systems
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>Private Study Rooms and Conference Spaces
-                            </p>
-                        </li>
-                        <li className="list">
-                            <span>
-                                <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 12.75l6 6 9-13.5" stroke-linejoin="round" stroke-linecap="round"></path>
-                                </svg>
-                            </span>
-                            <p>High-Speed Internet and Streaming Services
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div className="button-container">
-                    <Link to={`/dashboard/checkOut/platinum`}>
-                        <button className='btn btn-outline btn-success' type="btn">
-                            Upgrade Now
-                        </button>
-                    </Link>
-                </div>
+
+
             </div>
-
-
         </div>
     );
 };

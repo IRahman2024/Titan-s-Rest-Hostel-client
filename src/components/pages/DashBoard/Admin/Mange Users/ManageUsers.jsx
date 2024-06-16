@@ -1,13 +1,14 @@
 import { useState } from "react";
 import useGetPublic from "../../../../hooks/useGetPublic";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+// import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosScure";
 
 const ManageUsers = () => {
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     // const {name , email, badge, } 
 
@@ -27,7 +28,7 @@ const ManageUsers = () => {
     const { data, isPending: loader, refetch } = useQuery({
         queryKey: ['manage-all-users', url],
         queryFn: async () => {
-            const response = await axiosPublic.get(url)
+            const response = await axiosSecure.get(url)
             // console.log(response);
             return response.data;
         }
@@ -47,7 +48,7 @@ const ManageUsers = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    axiosPublic.patch(`/users/admin/${data._id}`)
+                    axiosSecure.patch(`/users/admin/${data._id}`)
                         .then(res => {
                             console.log(res);
                             if (res.data.modifiedCount > 0) {

@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import useGetPublic from "../../../../hooks/useGetPublic";
+// import useGetPublic from "../../../../hooks/useGetPublic";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../../hooks/useAxiosScure";
 
 const AllMeals = () => {
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const [likeSort, setLikeSort] = useState('');
     const [reviewSort, setReviewSort] = useState('');
     console.log(reviewSort);
@@ -29,7 +31,7 @@ const AllMeals = () => {
     const handleDel = async (id) => {
         // console.log(id);
 
-        const res = await axiosPublic.delete(`/meals/${id}`);
+        const res = await axiosSecure.delete(`/meals/${id}`);
         if (res.status == 200) {
             refetch();
         }

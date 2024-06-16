@@ -4,6 +4,7 @@ import useMeals from "../../../hooks/useMeals";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import MealTab from "./MealTab";
+import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 
 const MealsSection = () => {
 
@@ -22,6 +23,7 @@ const MealsSection = () => {
 
     return (
         <div>
+            <SectionTitle heading={'Our Meals'}></SectionTitle>
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <Tab>Breakfast</Tab>

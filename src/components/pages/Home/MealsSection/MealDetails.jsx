@@ -11,6 +11,7 @@ import useAxiosSecure from "../../../hooks/useAxiosScure";
 import Swal from "sweetalert2";
 import useGetPublic from "../../../hooks/useGetPublic";
 import ReviewCard from "./ReviewCard";
+import Loader from "../../../Shared/Loader/Loader";
 
 const MealDetails = () => {
 
@@ -120,7 +121,7 @@ const MealDetails = () => {
     }
 
     if (loader) {
-        return <span className="loading loading-spinner loading-lg"></span>
+        return <Loader></Loader>
     }
 
     const { name, category, price, details, ingredients, distributorEmail, distributorName, image, _id, rating, postTime, status } = meal;
