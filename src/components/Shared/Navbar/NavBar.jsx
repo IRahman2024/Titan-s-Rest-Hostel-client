@@ -12,12 +12,13 @@ const NavBar = () => {
         <li className="mx-2"><Link to='/'>Home</Link></li>
         <li className="mx-2"><Link to='/meals'>Meals</Link></li>
         <li className="mx-2"><Link to='/UpcomingMeals'>Upcoming Meals</Link></li>
-        <li className="mx-2"><Link to='/'>Notifications</Link></li>
+        {/* <li className="mx-2"><Link to='/'>Notifications</Link></li> */}
         {isAdmin ? <li className="mx-2"><Link to='/dashBoard/adminProfile'>Dashboard</Link></li> :
             <li className="mx-2"><Link to='/dashBoard/userProfile'>Dashboard</Link></li>}
         {/* <li className="mx-2"><Link to='/dashBoard'>Dashboard</Link></li> */}
     </>
     // console.log(user);
+
     const handleLogOut = () => {
         // console.log('dgdgddgf');
         return logOut()

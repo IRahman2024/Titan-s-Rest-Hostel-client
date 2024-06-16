@@ -50,7 +50,7 @@ const Login = () => {
         loadCaptchaEnginge(6);
     }, [])
 
-    console.log(loader);
+    // console.log(loader);
 
     return (
         <>

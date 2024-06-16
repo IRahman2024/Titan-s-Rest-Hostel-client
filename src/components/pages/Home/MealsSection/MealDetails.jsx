@@ -68,7 +68,7 @@ const MealDetails = () => {
         }
         console.log('food review ', review);
         const res = await axiosSecure.post(`/reviews`, review);
-        const res2 = await axiosPublic.patch(`/mealsReview/${id}`)
+        const res2 = await axiosSecure.patch(`/mealsReview/${id}`)
             .then(() => {
                 Swal.fire({
                     title: "Review Accepted!",
@@ -92,7 +92,7 @@ const MealDetails = () => {
         //setting likeArray
         const res = await axiosPublic.patch(`/meals-likeArray/${meal._id}`, likeArray);
         //setting likeCount
-        const res2 = await axiosPublic.patch(`/likeCount/${id}`);
+        const res2 = await axiosSecure.patch(`/likeCount/${id}`);
         if (res.data.modifiedCount) {
             refetch();
         }

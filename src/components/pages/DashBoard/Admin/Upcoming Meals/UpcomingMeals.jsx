@@ -3,9 +3,11 @@ import FormModal from "./FormModal";
 import useGetPublic from "../../../../hooks/useGetPublic";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosScure";
 
 const UpcomingMeals = () => {
-    const axiosPublic = useAxiosPublic();
+    // const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data, loader, refetch } = useGetPublic('upcoming-meal-table-data', '/upcomingMeals');
     console.log(data);
@@ -41,7 +43,7 @@ const UpcomingMeals = () => {
 
     const handlePublish = (id, name) => {
         console.log(name);
-        axiosPublic.patch(`/upcomingMeals/${id}`)
+        axiosSecure.patch(`/upcomingMeals/${id}`)
             .then((res) => {
                 console.log(res.data);
                 if (res.data.modifiedCount) {

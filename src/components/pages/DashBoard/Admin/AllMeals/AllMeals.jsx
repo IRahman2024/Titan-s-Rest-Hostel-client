@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosScure";
+import Swal from "sweetalert2";
 
 const AllMeals = () => {
     const axiosPublic = useAxiosPublic();
@@ -31,11 +32,32 @@ const AllMeals = () => {
     const handleDel = async (id) => {
         // console.log(id);
 
-        const res = await axiosSecure.delete(`/meals/${id}`);
-        if (res.status == 200) {
-            refetch();
-        }
-        console.log(res);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+        .then(async (res)=>{
+            if (res.isConfirmed) {
+                axiosSecure.delete(`/meals/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        })
+
     }
 
     if (loader) {

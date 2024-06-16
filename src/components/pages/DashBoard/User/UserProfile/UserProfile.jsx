@@ -70,7 +70,7 @@ const UserProfile = () => {
             {
                 addAbout ? <div className="grid justify-items-end gap-2">
                     <textarea
-                        defaultValue={about.bio}
+                        defaultValue={about?.bio}
                         id="bio-textarea"
                         className="textarea textarea-primary" placeholder="Bio"></textarea>
                     <button

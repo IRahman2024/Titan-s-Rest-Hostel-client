@@ -6,6 +6,7 @@ import './searchbar.css';
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosScure";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
+import { axiosPublic } from "../../hooks/useAxiosPublic";
 
 const Meals = () => {
     // const [meals, refetch] = useMeals();
@@ -25,7 +26,7 @@ const Meals = () => {
     const { data: meals, isPending: loader } = useQuery({
         queryKey: ['allFoods', url],
         queryFn: async () => {
-            const response = await axiosSecure.get(url)
+            const response = await axiosPublic.get(url)
             // console.log(response);
             return response.data;
         }

@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosScure";
 
 const image_host = import.meta.env.VITE_imagebb_api_key;
 const image_host_api = `https://api.imgbb.com/1/upload?key=${image_host}`;
@@ -16,7 +17,7 @@ const UpdateItem = () => {
     console.log(data);
 
     const axiosPublic = useAxiosPublic();
-    // const axiosSecure = useAxioSecure();
+    const axiosSecure = useAxiosSecure();
 
     const {
         register,
@@ -49,7 +50,7 @@ const UpdateItem = () => {
                 rating: data.rating
             }
             // console.log(mealItems);
-            const mealRes = await axiosPublic.patch(`/meals/${_id}`, mealItems);
+            const mealRes = await axiosSecure.patch(`/meals/${_id}`, mealItems);
             console.log(mealRes.data);
             if (mealRes.data.modifiedCount) {
                 Swal.fire({
