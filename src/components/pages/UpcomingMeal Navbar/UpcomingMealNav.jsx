@@ -5,7 +5,7 @@ const UpcomingMealNav = () => {
 
     const { data: meals, loader, refetch } = useGetPublic('all-upcoming-meal', `/mealsUpcoming`)
 
-    // console.log(data);
+    console.log(meals);
 
     if (loader) {
         return <div className="grid grid-cols-4 space-y-3 m-5">
@@ -59,6 +59,10 @@ const UpcomingMealNav = () => {
             </div>
             
         </div>
+    }
+
+    if(meals.length == 0){
+        return <p className="txt-6xl">Sorry No New Food..</p>
     }
 
     return (
