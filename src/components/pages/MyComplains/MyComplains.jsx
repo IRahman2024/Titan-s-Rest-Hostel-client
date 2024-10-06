@@ -76,7 +76,7 @@ const MyReview = () => {
 
     if (data?.length === 0) {
         refetch();
-        return <p className="text-4xl">No review yet</p>;
+        return <p className="text-4xl">No data found</p>;
         // return <p>Almost done..</p>;
     }
 

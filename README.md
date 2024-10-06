@@ -2,10 +2,14 @@ assignment12_category_0014
 
 client-side-repo: https://github.com/programming-hero-web-course1/b9a12-client-side-IRahman2024
 server-side-repo: https://github.com/programming-hero-web-course1/b9a12-server-side-IRahman2024
+
 new client-side-repo: https://github.com/IRahman2024/Titan-s-Rest-Hostel-client
 new server-side-repo: https://github.com/IRahman2024/Titan-s-Rest-Hostel-server
 
 live-link: https://titan-s-rest.web.app
+
+admin email: balkama@balkama.cpm pass: Ab123456& 
+user email: tuni@gf.com pass: Ab123456&
 
 1. It has admin and userPanel no access without login
 2. I've used JWT for serverSide protection
