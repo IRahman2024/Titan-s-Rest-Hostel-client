@@ -12,3 +12,5 @@ live-link: https://titan-s-rest.web.app
 3. I've have used loader for data load and skeleton for lazyLoading
 4. I've used firebase for Authentication and hosting and vercel for server deployment
 5. I've added searched functionality in different parts of this site
+
+Update (06/10/24) - A dedicated complaint box is now available for students to voice their concerns directly through the platform. Administrators have full control to review complaints and update their status in real-time, ensuring prompt and transparent resolutions.

@@ -4,12 +4,14 @@ import { FaBook, FaHome, FaShoppingBag, FaUser, FaUsers } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { FaRankingStar } from "react-icons/fa6";
 import { CiMenuBurger, CiViewList } from "react-icons/ci";
-import { MdContactPhone, MdMenuBook } from "react-icons/md";
+import { MdContactPhone, MdMenuBook, MdReportProblem } from "react-icons/md";
 // import useCarts from "../../hooks/useCarts";
-import { PiForkKnifeFill } from "react-icons/pi";
+// import { PiForkKnifeFill } from "react-icons/pi";
 import { IoFastFood, IoPersonCircleSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import useAdmin from "../../hooks/useAdmin";
+import { BiBug, BiSolidVideo } from "react-icons/bi";
+import { BsBadge4K } from "react-icons/bs";
 // import useAdmin from "../../hooks/useAdmin";
 
 const DashBoard = () => {
@@ -17,7 +19,7 @@ const DashBoard = () => {
 
     // const [isAdmin] = useAdmin();
     const [isAdmin] = useAdmin();
-    console.log(isAdmin);
+    // console.log(isAdmin);
 
     return (
         <div className="flex">
@@ -57,6 +59,11 @@ const DashBoard = () => {
                                 <NavLink to='/dashBoard/allReviews'>
                                     <CiViewList />
                                     All Reviews</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/dashBoard/allComplains'>
+                                    <MdReportProblem />
+                                    All Complains</NavLink>
                             </li>
                             <li className="p-2">
                                 <NavLink to='/dashBoard/serve'>
@@ -99,6 +106,16 @@ const DashBoard = () => {
                                 <NavLink to='/dashboard/myRequest'>
                                     <IoFastFood />
                                     My Request</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/dashboard/addComplain'>
+                                    <BiBug />
+                                    Add a Complain</NavLink>
+                            </li>
+                            <li className="p-2">
+                                <NavLink to='/dashboard/myComplains'>
+                                    <BiSolidVideo />
+                                    My Complains</NavLink>
                             </li>
 
                         </>

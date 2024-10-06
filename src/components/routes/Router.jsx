@@ -23,6 +23,9 @@ import UpcomingMealNav from "../pages/UpcomingMeal Navbar/UpcomingMealNav";
 import AdminRoutes from "./AdminRoutes";
 import ErrorPage2 from "../../ErrorPage2";
 import PrivateRoutes from "./PrivateRoutes";
+import AddComplain from "../pages/AddComplain/AddComplain";
+import MyComplaines from "../pages/MyComplains/MyComplains";
+import AllComplains from "../pages/DashBoard/Admin/AllComplains/AllComplains";
 
 export const router = createBrowserRouter([
     {
@@ -89,6 +92,14 @@ export const router = createBrowserRouter([
                 path:'myRequest',
                 element: <MyRequest></MyRequest>
             },
+            {
+                path:'addComplain',
+                element: <AddComplain></AddComplain>
+            },
+            {
+                path:'myComplains',
+                element: <MyComplaines></MyComplaines>
+            },
             //admin only user
             {
                 path: 'adminProfile',
@@ -117,12 +128,16 @@ export const router = createBrowserRouter([
             {
                 path: 'updateItem/:id',
                 element: <AdminRoutes><UpdateItem></UpdateItem></AdminRoutes>,
-                // loader: ({params}) => fetch(`http://localhost:5000/meals/${params.id}`)
-                loader: ({params}) => fetch(`https://server-rosy-nine.vercel.app/meals/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/meals/${params.id}`)
+                // loader: ({params}) => fetch(`https://server-rosy-nine.vercel.app/meals/${params.id}`)
             },
             {
                 path: 'addMeal',
                 element: <AdminRoutes><AddMeals></AddMeals></AdminRoutes>
+            },
+            {
+                path: 'allComplains',
+                element: <AdminRoutes><AllComplains></AllComplains></AdminRoutes>
             },
         ]
 
